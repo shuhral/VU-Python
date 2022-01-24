@@ -8,16 +8,18 @@
 print("Enter \'1' to write or \'2' to read: ")
 option = int(input("Enter your option: "))
 
-
-
 if option == 1:
     myString = input("Enter a sentence: ")
     myFile = open("file.txt", "w")
     myFile.write(myString)
     myFile.close()
 elif option == 2:
-    myFile = open("file.txt", "r")
-    print(myFile.read())
+    try:
+        myFile = open("file.txt", "r")
+        print(myFile.read())
+    except FileNotFoundError:
+        print("File not found. Creating file.")
+        myFile = open("file.txt", "x")
 else:
     print("That is not a valid option. Try again.")
 
